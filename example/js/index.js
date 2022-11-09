@@ -1,6 +1,6 @@
 const BASE_URL = `https://fathomless-shelf-54969.herokuapp.com`;
 let API_KEY;
-
+const planetsElem = document.querySelectorAll(`article`);
 
 async function getKey() {
     const response = await fetch(`${BASE_URL}/keys`, {method: 'POST'})
@@ -15,8 +15,18 @@ async function getPlanets() {
             'x-zocom': `${API_KEY.key}`
         }
     });
-    const data = await response.json()
-    console.log(data)
+    const planets = await response.json()
+    console.log(planets)
 }
+
+
+for (let i = 0; i < planetsElem.length; i++) {
+    planetsElem[i].addEventListener(`click`, async () => {
+        let id = i
+        let planet = `${BASE_URL}/bodies/${id}`
+        console.log(planet)
+    }) 
+}
+
 
 getKey();
