@@ -8,10 +8,11 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    background-color: darkblue;
+    display: none;
 }
 
 #sun {
-    position: relative;
     background-color: #FFD029;
     width: 300px;
     height: 300px;
@@ -84,3 +85,70 @@ main {
     height: 66px;
     border-radius: 100%;
 }
+
+footer {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 85);
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#information {
+    width: 40rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+hr {
+    width: 40rem;
+    height: 0.5px;
+    background-color: #FFFFFF33;
+    
+}
+
+h1 {
+    font-size: 60px;
+    margin: 0;
+}
+
+h2 {
+    color: #FFD029;
+    font-size: 24px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#info {
+    width: 40rem;
+    display: grid;
+    grid-template-columns: 1fr, 1fr;
+}
+
+#circumference {
+    justify-self: start;
+    grid-column: 1;
+}
+
+#fromSun {
+    justify-self: start;
+    grid-column: 2;
+}
+
+#max {
+    justify-self: start;
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#min {
+    justify-self: start;
+    grid-column: 2;
+    grid-row: 2;
+}
+
+
+
