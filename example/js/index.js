@@ -119,4 +119,5 @@ document.querySelector(`#rocketShip`).addEventListener(`click`, () => { // Klick
     planetInformation.classList.add(`hide`)
     solarSystem.classList.remove(`hide`)
     document.querySelector(`#information`).remove();
+    document.querySelector(`#saturnCircleBig`).remove();
 })
