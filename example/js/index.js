@@ -58,11 +58,17 @@ async function getPlanets() {
                     <hr />
                     <div id="moons">
                     <h4>MÅNAR</h4>
-                        <p>${planets.bodies[i].moons}</p>
                     </div>
                 </aside>`
             
-                planetInformation.insertAdjacentHTML(`beforeend`, el)
+            planetInformation.insertAdjacentHTML(`beforeend`, el)
+
+            let moons = planets.bodies[i].moons
+            for (let index = 0; index < moons.length; index++) {
+                let moon = `<p class="moon">${planets.bodies[i].moons[index]}</p>`
+                document.querySelector(`#moons`).insertAdjacentHTML(`beforeend`, moon)
+                
+            }
                 console.log(planets.bodies[i])
                 if (i === 0) {
 

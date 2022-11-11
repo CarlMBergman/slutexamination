@@ -180,10 +180,17 @@ h2 {
 #moons {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
+    justify-items: start;
 }
 
 #moons h4 {
     grid-column: 1 / 9
+}
+
+.moon {
+    padding-right: 1rem;
+    margin-top: 0;
+    padding-bottom: 0;
 }
 
 #rocketShip {
