@@ -63,21 +63,29 @@ main {
 }
 
 #saturn {
-    background-color: #C7AA72;
-    width: 144px;
-    height: 144px;
-    border-radius: 100%;
+    width: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+#saturnPlanet {
+    position: absolute;
+    background-color: #C7AA72;
+    width: 144px;
+    height: 144px;
+    border-radius: 100%;
+    z-index: 1;
+}
+
 #saturnCircle {
+    position: absolute;
     background-color: #FFFFFF66;
     width: 218.23px;
     height: 5.5px;
     border-radius: 100%;
-    transform: rotate(135deg);
+    transform: rotate(145deg);
+    z-index: 2;
 }
 
 #uranus {
@@ -167,6 +175,15 @@ h2 {
     justify-self: start;
     grid-column: 2;
     grid-row: 2;
+}
+
+#moons {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+}
+
+#moons h4 {
+    grid-column: 1 / 9
 }
 
 #rocketShip {

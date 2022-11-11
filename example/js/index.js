@@ -5,6 +5,8 @@ const planetInformation = document.querySelector(`footer`);
 const solarSystem = document.querySelector(`main`)
 let el;
 
+
+
 async function getKey() {
     const response = await fetch(`${BASE_URL}/keys`, {method: 'POST'})
     API_KEY = await response.json();
