@@ -1,10 +1,10 @@
-const BASE_URL = `https://fathomless-shelf-54969.herokuapp.com`;
+const BASE_URL          = `https://fathomless-shelf-54969.herokuapp.com`;
 let API_KEY;
-const planetsElem = document.querySelectorAll(`article`);
+const planetsElem       = document.querySelectorAll(`article`);
 const planetInformation = document.querySelector(`footer`);
-const solarSystem = document.querySelector(`main`)
+const solarSystem       = document.querySelector(`main`)
 let el;
-
+const planetInInfo      = document.querySelector(`#planetInInformation`)
 
 
 async function getKey() {
@@ -66,41 +66,51 @@ async function getPlanets() {
             let moons = planets.bodies[i].moons
             for (let index = 0; index < moons.length; index++) {
                 let moon = `<p class="moon">${planets.bodies[i].moons[index]}</p>`
-                document.querySelector(`#moons`).insertAdjacentHTML(`beforeend`, moon)
-                
+                document.querySelector(`#moons`).insertAdjacentHTML(`beforeend`, moon)  
             }
+            
                 console.log(planets.bodies[i])
-                if (i === 0) {
-
+                if (planets.bodies[i].name === `Solen`) {
+                    planetInInfo.style.backgroundColor = "rgba(255, 208, 41, 1)";
+                    planetInInfo.style.boxShadow = "0 0 0 50px rgba(255, 208, 41, 0.1), 0 0 0 100px rgba(255, 208, 41, 0.06)";
                 }
-                if (i === 1) {
-                    
+                else if (planets.bodies[i].name === `Merkurius`) {
+                    planetInInfo.style.backgroundColor = "rgba(136, 136, 136, 1)";
+                    planetInInfo.style.boxShadow = "0 0 0 50px rgba(136, 136, 136, 0.1), 0 0 0 100px rgba(136, 136, 136, 0.06)";
                 }
-                if (i === 2) {
-                    
+                else if (planets.bodies[i].name === `Venus`) {
+                    planetInInfo.style.backgroundColor = "rgba(231, 205, 205, 1)";
+                    planetInInfo.style.boxShadow = "0 0 0 50px rgba(231, 205, 205, 0.1), 0 0 0 100px rgba(231, 205, 205, 0.06)";
                 }
-                if (i === 3) {
-                    
+                else if (planets.bodies[i].name === `Jorden`) {
+                    planetInInfo.style.backgroundColor = "#428ED4";
+                    planetInInfo.style.boxShadow = "0 0 0 50px rgba(66, 142, 212, 0.1), 0 0 0 100px rgba(66, 142, 212, 0.06)";
                 }
-                if (i === 4) {
-                    
+                else if (planets.bodies[i].name === `Mars`) {
+                    planetInInfo.style.backgroundColor = "rgba(239, 95, 95, 1)";
+                    planetInInfo.style.boxShadow = "0 0 0 50px rgba(239, 95, 95, 0.1), 0 0 0 100px rgba(239, 95, 95, 0.06)";
                 }
-                if (i === 5) {
-                    
+                else if (planets.bodies[i].name === `Jupiter`) {
+                    planetInInfo.style.backgroundColor = "rgba(226, 148, 104, 1)";
+                    planetInInfo.style.boxShadow = "0 0 0 50px rgba(226, 148, 104, 0.1), 0 0 0 100px rgba(226, 148, 104, 0.06)";
                 }
-                if (i === 6) {
-                    
+                else if (planets.bodies[i].name === `Saturnus`) {
+                    planetInInfo.style.backgroundColor = "rgba(199, 170, 114, 1)";
+                    planetInInfo.style.boxShadow = "0 0 0 50px rgba(199, 170, 114, 0.1), 0 0 0 100px rgba(199, 170, 114, 0.06)";
                 }
-                if (i === 7) {
-                    
+                else if (planets.bodies[i].name === `Uranus`) {
+                    planetInInfo.style.backgroundColor = "rgba(201, 212, 241, 1)";
+                    planetInInfo.style.boxShadow = "0 0 0 50px rgba(201, 212, 241, 0.1), 0 0 0 100px rgba(201, 212, 241, 0.06)";
                 }
-                if (i === 8) {
-                    
+                else if (planets.bodies[i].name === `Neptunus`) {
+                    planetInInfo.style.backgroundColor = "rgba(122, 145, 167, 1)";
+                    planetInInfo.style.boxShadow = "0 0 0 50px rgba(122, 145, 167, 0.1), 0 0 0 100px rgba(122, 145, 167, 0.06)";
                 }
         })
     }
 }
 getKey()
+
 
 document.querySelector(`#rocketShip`).addEventListener(`click`, () => {
     planetInformation.classList.add(`hide`)
