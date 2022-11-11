@@ -73,7 +73,7 @@ async function getPlanets() {
                 console.log(planets.bodies[i])
                 if (planets.bodies[i].name === `Solen`) {
                     planetInInfo.style.backgroundColor = "rgba(255, 208, 41, 1)";
-                    planetInInfo.style.boxShadow = "0 0 0 50px rgba(255, 208, 41, 0.1), 0 0 0 100px rgba(255, 208, 41, 0.06)";
+                    planetInInfo.style.boxShadow = "80px 0px 290px 0px #FFD029";
                 }
                 else if (planets.bodies[i].name === `Merkurius`) {
                     planetInInfo.style.backgroundColor = "rgba(136, 136, 136, 1)";
