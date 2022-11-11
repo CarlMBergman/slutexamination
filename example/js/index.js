@@ -1,13 +1,13 @@
-const BASE_URL          = `https://fathomless-shelf-54969.herokuapp.com`;
-let API_KEY;
-const planetsElem       = document.querySelectorAll(`article`);
-const planetInformation = document.querySelector(`footer`);
-const solarSystem       = document.querySelector(`main`)
-let el;
-const planetInInfo      = document.querySelector(`#planetInInformation`)
+const BASE_URL          = `https://fathomless-shelf-54969.herokuapp.com`; // URL till api:n
+let API_KEY; // Här sparas nyckeln
+const planetsElem       = document.querySelectorAll(`article`); // Hämtar mina planeter
+const planetInformation = document.querySelector(`footer`); // Hämtar Informationssidan
+const solarSystem       = document.querySelector(`main`); // Hämtar solsystemet
+let el; // Här sparas det som ska skrivas ut på infosidan
+const planetInInfo      = document.querySelector(`#planetInInformation`); // Detta är planeten som syns på infosidan
 
 
-async function getKey() {
+async function getKey() { // Här hämtas nyckeln
     const response = await fetch(`${BASE_URL}/keys`, {method: 'POST'})
     API_KEY = await response.json();
     console.log(API_KEY)
@@ -17,12 +17,12 @@ async function getKey() {
 async function getPlanets() {
     const response = await fetch(`${BASE_URL}/bodies`, {
         headers: {
-            'x-zocom': `${API_KEY.key}`
+            'x-zocom': `${API_KEY.key}` // Här låses API:n upp
         }
     });
     let planets = await response.json()
     console.log(planets)
-    for (let i = 0; i < planetsElem.length; i++) {
+    for (let i = 0; i < planetsElem.length; i++) { // Loopar igenom mina planeter och lägger ett click på dom
         planetsElem[i].addEventListener(`click`, async () => {
             planetInformation.classList.remove(`hide`)
             solarSystem.classList.add(`hide`)
@@ -57,18 +57,19 @@ async function getPlanets() {
                     </div>
                     <hr />
                     <div id="moons">
-                    <h4>MÅNAR</h4>
+                        <h4>MÅNAR</h4>
                     </div>
                 </aside>`
-            
+             // Här skrivs all info ut (förutom månarna)
             planetInformation.insertAdjacentHTML(`beforeend`, el)
 
             let moons = planets.bodies[i].moons
-            for (let index = 0; index < moons.length; index++) {
+            for (let index = 0; index < moons.length; index++) { // Loopar igenom månarna och skriver ut dom en i varje grid fält
                 let moon = `<p class="moon">${planets.bodies[i].moons[index]}</p>`
-                document.querySelector(`#moons`).insertAdjacentHTML(`beforeend`, moon)  
+                document.querySelector(`#moons`).insertAdjacentHTML(`beforeend`, moon)
             }
             
+                // Här ändras färgen på planeten i infosidan
                 console.log(planets.bodies[i])
                 if (planets.bodies[i].name === `Solen`) {
                     planetInInfo.style.backgroundColor = "rgba(255, 208, 41, 1)";
@@ -97,6 +98,8 @@ async function getPlanets() {
                 else if (planets.bodies[i].name === `Saturnus`) {
                     planetInInfo.style.backgroundColor = "rgba(199, 170, 114, 1)";
                     planetInInfo.style.boxShadow = "0 0 0 50px rgba(199, 170, 114, 0.1), 0 0 0 100px rgba(199, 170, 114, 0.06)";
+                    let saturnCircle = `<div id="saturnCircleBig"></div>`
+                    planetInformation.insertAdjacentHTML(`beforeend`, saturnCircle)
                 }
                 else if (planets.bodies[i].name === `Uranus`) {
                     planetInInfo.style.backgroundColor = "rgba(201, 212, 241, 1)";
@@ -112,7 +115,7 @@ async function getPlanets() {
 getKey()
 
 
-document.querySelector(`#rocketShip`).addEventListener(`click`, () => {
+document.querySelector(`#rocketShip`).addEventListener(`click`, () => { // Klicka för att komma tillbaka till solsystemet, rensar även informationen om tidigare planet
     planetInformation.classList.add(`hide`)
     solarSystem.classList.remove(`hide`)
     document.querySelector(`#information`).remove();

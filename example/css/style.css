@@ -17,6 +17,7 @@ h2 {
     color: #FFD029;
     font-size: 24px;
     font-family: 'Lora';
+    margin-top: 0;
 }
 
 h4 {
@@ -174,6 +175,17 @@ footer {
     z-index: 2;
 }
 
+#saturnCircleBig {
+    position: absolute;
+    background-color: #FFFFFF66;
+    left: -1200px;
+    width: 1650px;
+    height: 10px;
+    border-radius: 100%;
+    transform: rotate(153deg);
+    z-index: 355;
+}
+
 hr {
     width: 40rem;
     background-color: rgba(255, 255, 255, 0.2);
@@ -231,5 +243,7 @@ hr {
     bottom: 700px;
     transform: rotate(15deg);
 }
+
+
 
 
