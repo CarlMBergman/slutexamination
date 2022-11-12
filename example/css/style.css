@@ -23,6 +23,7 @@ h2 {
 h4 {
     font-family: 'Secular One';
     font-size: 18px;
+    margin-bottom: 15px;
 }
 
 h5 {
@@ -37,6 +38,7 @@ p {
     font-family: 'Roboto Condensed';
     font-size: 18px;
     line-height: 30px;
+    margin-bottom: 10px;
 }
 
 main {
