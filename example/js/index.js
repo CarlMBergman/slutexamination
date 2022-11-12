@@ -22,6 +22,10 @@ async function getPlanets() {
     });
     let planets = await response.json()
     console.log(planets)
+    givePlanetInformation(planets)
+}
+
+async function givePlanetInformation(planets) {
     for (let i = 0; i < planetsElem.length; i++) { // Loopar igenom mina planeter och lägger ett click på dom
         planetsElem[i].addEventListener(`click`, async () => {
             planetInformation.classList.remove(`hide`)
@@ -99,7 +103,7 @@ async function getPlanets() {
                     planetInInfo.style.backgroundColor = "rgba(199, 170, 114, 1)";
                     planetInInfo.style.boxShadow = "0 0 0 50px rgba(199, 170, 114, 0.1), 0 0 0 100px rgba(199, 170, 114, 0.06)";
                     let saturnCircle = `<div id="saturnCircleBig"></div>`
-                    planetInformation.insertAdjacentHTML(`beforeend`, saturnCircle)
+                    document.querySelector(`#information`).insertAdjacentHTML(`beforeend`, saturnCircle)
                 }
                 else if (planets.bodies[i].name === `Uranus`) {
                     planetInInfo.style.backgroundColor = "rgba(201, 212, 241, 1)";
@@ -119,5 +123,4 @@ document.querySelector(`#rocketShip`).addEventListener(`click`, () => { // Klick
     planetInformation.classList.add(`hide`)
     solarSystem.classList.remove(`hide`)
     document.querySelector(`#information`).remove();
-    document.querySelector(`#saturnCircleBig`).remove();
 })
