@@ -35,7 +35,7 @@ async function givePlanetInformation(planets) {
         })
     }
 }
-getPlanets();
+
 
 document.querySelector(`#rocketShip`).addEventListener(`click`, () => { // Klicka för att komma tillbaka till solsystemet, rensar även informationen om tidigare planet
     planetInformation.classList.add(`hide`)
@@ -53,25 +53,25 @@ function updateUIInformation(planets, i){  // Här skrivs all info ut
             </div>
             <hr />
             <div id="info">
-            <div
-                id="
-            circumference"
-            >
-                <h4>OMKRETS</h4>
-                <p>${planets.bodies[i].circumference}</p>
-            </div>
-            <div id="fromSun">
-                <h4>KM FRÅN SOLEN</h4>
-                <p>${planets.bodies[i].distance}</p>
-            </div>
-            <div id="max">
-                <h4>MAX TEMPERATUR</h4>
-                <p>${planets.bodies[i].temp.day}</p>
-            </div>
-            <div id="min">
-                <h4>MIN TEMPERATUR</h4>
-                <p>${planets.bodies[i].temp.night}</p>
-            </div>
+                <div
+                    id="
+                circumference"
+                >
+                    <h4>OMKRETS</h4>
+                    <p>${planets.bodies[i].circumference}</p>
+                </div>
+                <div id="fromSun">
+                    <h4>KM FRÅN SOLEN</h4>
+                    <p>${planets.bodies[i].distance}</p>
+                </div>
+                <div id="max">
+                    <h4>MAX TEMPERATUR</h4>
+                    <p>${planets.bodies[i].temp.day}</p>
+                </div>
+                <div id="min">
+                    <h4>MIN TEMPERATUR</h4>
+                    <p>${planets.bodies[i].temp.night}</p>
+                </div>
             </div>
             <hr />
             <div id="moons">
@@ -128,3 +128,5 @@ function updatePlanetColors(planets, i){ // Här ändras färgen på planeten i 
         planetInInfo.style.boxShadow = "0 0 0 50px rgba(122, 145, 167, 0.1), 0 0 0 100px rgba(122, 145, 167, 0.06)";
     }
 }
+
+getPlanets();
