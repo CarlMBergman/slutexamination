@@ -1,9 +1,12 @@
+import { saveFavPlanet } from "./modules/firebase.js";
+
 const BASE_URL          = 'https://my-json-server.typicode.com/zocom-christoffer-wallenberg/solaris-api'; // URL till api:n
 const planetsElem       = document.querySelectorAll(`article`); // Hämtar mina planeter
 const planetInformation = document.querySelector(`footer`); // Hämtar Informationssidan
 const solarSystem       = document.querySelector(`main`); // Hämtar solsystemet
 const planetInInfo      = document.querySelector(`#planetInInformation`); // Detta är planeten som syns på infosidan
-
+const favBtn            = document.querySelector('#favBtn')
+const noFavBtn          = document.querySelector('#noFavBtn')
 
 async function getKey() { // Här hämtas nyckeln
     const response = await fetch(`${BASE_URL}/keys`);
@@ -86,6 +89,7 @@ function updateUIInformation(planets, i){  // Här skrivs all info ut
         let moon = `<p class="moon">${planets[i].moons[index]}</p>`
         document.querySelector(`#moons`).insertAdjacentHTML(`beforeend`, moon)
     }
+    favBtnClick(planets, i)
 }
 
 function updatePlanetColors(planets, i){ // Här ändras färgen på planeten i infosidan
@@ -127,6 +131,12 @@ function updatePlanetColors(planets, i){ // Här ändras färgen på planeten i 
         planetInInfo.style.backgroundColor = "rgba(122, 145, 167, 1)";
         planetInInfo.style.boxShadow = "0 0 0 50px rgba(122, 145, 167, 0.1), 0 0 0 100px rgba(122, 145, 167, 0.06)";
     }
+}
+
+function favBtnClick(planets, i) {
+    favBtn.addEventListener('click', () => {
+        saveFavPlanet(planets, i)
+    })
 }
 
 getPlanets();
