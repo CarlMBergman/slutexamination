@@ -1,4 +1,4 @@
-import { saveFavPlanet } from "./modules/firebase.js";
+import { saveFavPlanet, getFavPlanets } from "./modules/firebase.js";
 
 const BASE_URL          = 'https://my-json-server.typicode.com/zocom-christoffer-wallenberg/solaris-api'; // URL till api:n
 const planetsElem       = document.querySelectorAll(`article`); // Hämtar mina planeter
@@ -6,7 +6,8 @@ const planetInformation = document.querySelector(`footer`); // Hämtar Informati
 const solarSystem       = document.querySelector(`main`); // Hämtar solsystemet
 const planetInInfo      = document.querySelector(`#planetInInformation`); // Detta är planeten som syns på infosidan
 const favBtn            = document.querySelector('#favBtn')
-const noFavBtn          = document.querySelector('#noFavBtn')
+const favPlanetsBtn     = document.querySelector('#favPlanetsBtn')
+
 
 async function getKey() { // Här hämtas nyckeln
     const response = await fetch(`${BASE_URL}/keys`);
@@ -138,5 +139,24 @@ function favBtnClick(planets, i) {
         saveFavPlanet(planets, i)
     })
 }
+
+favPlanetsBtn.addEventListener('click', () => {
+    getFavPlanets();
+    solarSystem.classList.add(`hide`)
+    back2Solarsystem();
+})
+
+function back2Solarsystem() {
+    const back2Planets = document.querySelector('#allPlanetsBtn')
+    
+    back2Planets.addEventListener('click', () => {
+        const PlanetsHide = document.querySelectorAll('.favPlanetDiv')
+        solarSystem.classList.remove('hide')
+        PlanetsHide.forEach((div) => {
+            div.remove()
+        });
+    })
+}
+
 
 getPlanets();

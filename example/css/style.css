@@ -243,10 +243,16 @@ hr {
     position: absolute;
     height: 80px;
     left: 300px;
-    bottom: 700px;
+    top: 140px;
     transform: rotate(15deg);
 }
 
-
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid darkblue;
+}
 
 
