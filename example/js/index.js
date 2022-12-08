@@ -5,7 +5,7 @@ const planetsElem       = document.querySelectorAll(`article`); // Hämtar mina 
 const planetInformation = document.querySelector(`footer`); // Hämtar Informationssidan
 const solarSystem       = document.querySelector(`main`); // Hämtar solsystemet
 const planetInInfo      = document.querySelector(`#planetInInformation`); // Detta är planeten som syns på infosidan
-const favBtn            = document.querySelector('#favBtn')
+
 const favPlanetsBtn     = document.querySelector('#favPlanetsBtn')
 
 
@@ -36,6 +36,7 @@ async function givePlanetInformation(planets) {
             updateUIInformation(planets, i);
             updatePlanetColors(planets, i)
             console.log(planets[i])
+            favBtnClick(planets, i)
         })
     }
 }
@@ -45,10 +46,12 @@ document.querySelector(`#rocketShip`).addEventListener(`click`, () => { // Klick
     planetInformation.classList.add(`hide`)
     solarSystem.classList.remove(`hide`)
     document.querySelector(`#information`).remove();
+    document.querySelector('#favBtn').remove();
 })
 
 function updateUIInformation(planets, i){  // Här skrivs all info ut
     let el = `
+        <button id="favBtn">Save planet in favourites</button>
         <aside id="information">
             <div id="nameAndText">
                 <h1>${planets[i].name}</h1>
@@ -90,7 +93,6 @@ function updateUIInformation(planets, i){  // Här skrivs all info ut
         let moon = `<p class="moon">${planets[i].moons[index]}</p>`
         document.querySelector(`#moons`).insertAdjacentHTML(`beforeend`, moon)
     }
-    favBtnClick(planets, i)
 }
 
 function updatePlanetColors(planets, i){ // Här ändras färgen på planeten i infosidan
@@ -135,8 +137,10 @@ function updatePlanetColors(planets, i){ // Här ändras färgen på planeten i 
 }
 
 function favBtnClick(planets, i) {
+    const favBtn = document.querySelector('#favBtn')
     favBtn.addEventListener('click', () => {
         saveFavPlanet(planets, i)
+        console.log(planets[i])
     })
 }
 
@@ -148,6 +152,7 @@ favPlanetsBtn.addEventListener('click', () => {
 
 function back2Solarsystem() {
     const back2Planets = document.querySelector('#allPlanetsBtn')
+    
     
     back2Planets.addEventListener('click', () => {
         const PlanetsHide = document.querySelectorAll('.favPlanetDiv')
