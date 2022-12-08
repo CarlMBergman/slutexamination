@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, where } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,6 +20,7 @@ const db = getFirestore(app)
 const favPlanetsList = document.querySelector('section')
 
 async function saveFavPlanet(planets, i) {
+    console.log(i);
     try {
         await addDoc(collection(db, 'favPlanets'), {
             planetName: planets[i].name,
@@ -43,11 +44,11 @@ function addRemoveClick() {
     const noFavBtns = document.querySelectorAll('.noFavBtn')
 
     noFavBtns.forEach((btn) => {
-        btn.addEventListener('click', (event) => {
+        btn.addEventListener('click', async (event) => {
             console.log(event)
             const planetId = event.target.getAttribute('data-planet-id');
             console.log(planetId);
-            removeFromDatabase(planetId)
+            await removeFromDatabase(planetId)
 
             const planetsHide = document.querySelectorAll('.favPlanetDiv')
             console.log(planetsHide);
@@ -75,6 +76,18 @@ async function getFavPlanets() {
             favPlanetsList.insertAdjacentHTML('beforeend', elem)
     });
     addRemoveClick()
+}
+
+async function checkIfAlreadyFav() {
+    try {
+        const planetNameQuery = query(collection(db, 'favPlanets'), where('planetName', '==', planets[i].name));
+        const result = await getDocs(planetNameQuery);
+        let resultName = {};
+
+        
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export { saveFavPlanet, getFavPlanets }
