@@ -1,4 +1,4 @@
-import { saveFavPlanet, getFavPlanets } from "./modules/firebase.js";
+import { saveFavPlanet, getFavPlanets, manageFavPlanets } from "./modules/firebase.js";
 
 const BASE_URL          = 'https://my-json-server.typicode.com/zocom-christoffer-wallenberg/solaris-api'; // URL till api:n
 const planetsElem       = document.querySelectorAll(`article`); // Hämtar mina planeter
@@ -139,14 +139,15 @@ function updatePlanetColors(planets, i){ // Här ändras färgen på planeten i 
 function favBtnClick(planets, i) {
     const favBtn = document.querySelector('#favBtn')
     favBtn.addEventListener('click', () => {
-        saveFavPlanet(planets, i)
-        console.log(planets[i])
+        manageFavPlanets(planets, i)
+        
     })
 }
 
 favPlanetsBtn.addEventListener('click', () => {
     getFavPlanets();
     solarSystem.classList.add(`hide`)
+    document.querySelector('#allPlanetsBtn').classList.remove('hide')
     back2Solarsystem();
 })
 
@@ -157,6 +158,7 @@ function back2Solarsystem() {
     back2Planets.addEventListener('click', () => {
         const PlanetsHide = document.querySelectorAll('.favPlanetDiv')
         solarSystem.classList.remove('hide')
+        back2Planets.classList.add('hide')
         PlanetsHide.forEach((div) => {
             div.remove()
         });

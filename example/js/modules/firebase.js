@@ -20,7 +20,6 @@ const db = getFirestore(app)
 const favPlanetsList = document.querySelector('section')
 
 async function saveFavPlanet(planets, i) {
-    console.log(i);
     try {
         await addDoc(collection(db, 'favPlanets'), {
             planetName: planets[i].name,
@@ -45,13 +44,10 @@ function addRemoveClick() {
 
     noFavBtns.forEach((btn) => {
         btn.addEventListener('click', async (event) => {
-            console.log(event)
             const planetId = event.target.getAttribute('data-planet-id');
-            console.log(planetId);
             await removeFromDatabase(planetId)
 
             const planetsHide = document.querySelectorAll('.favPlanetDiv')
-            console.log(planetsHide);
             planetsHide.forEach((div) => {
                 div.remove()
              });
@@ -62,14 +58,12 @@ function addRemoveClick() {
 
 async function getFavPlanets() {
     const favPlanets = await getDocs(collection(db, 'favPlanets'));
-    console.log(favPlanets);
 
     favPlanets.forEach((favPlanet) => {
-        console.log(favPlanet.id);
-        console.log(favPlanet.data().planetName);
         const elem = `
         <div class="favPlanetDiv">
             <h1>${favPlanet.data().planetName}</h1>
+            <div class="${favPlanet.data().planetName}"></div>
             <button class="noFavBtn" data-planet-id="${favPlanet.id}">Remove planet from favourites</button>
         </div>    
             `
@@ -78,16 +72,30 @@ async function getFavPlanets() {
     addRemoveClick()
 }
 
-async function checkIfAlreadyFav() {
+async function checkIfAlreadyFav(planets, i) {
     try {
         const planetNameQuery = query(collection(db, 'favPlanets'), where('planetName', '==', planets[i].name));
         const result = await getDocs(planetNameQuery);
         let resultName = {};
 
-        
+        result.forEach((planetName) => {
+            console.log(planetName);
+            resultName = planetName;
+        });
+        return resultName;
     } catch (error) {
         console.log(error);
     }
 }
 
-export { saveFavPlanet, getFavPlanets }
+async function manageFavPlanets(planets, i) {
+    const planetName = await checkIfAlreadyFav(planets, i)
+    const planetId = planetName.id
+    if (planetId) {
+        alert('Already saved in favourites!')
+    } else {
+        saveFavPlanet(planets, i)
+    }
+}
+
+export { saveFavPlanet, getFavPlanets, manageFavPlanets }
