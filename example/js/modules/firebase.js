@@ -22,9 +22,9 @@ const favPlanetsList = document.querySelector('section')
 async function saveFavPlanet(planets, i) {
     try {
         await addDoc(collection(db, 'favPlanets'), {
-            planetName: planets[i].name,
-            planetSize: planets[i].circumference,
-            DistanceFromEarth: planets[i].distance
+            planetName: planets.bodies[i].name,
+            planetSize: planets.bodies[i].circumference,
+            DistanceFromEarth: planets.bodies[i].distance
         })
     } catch (error) {
         console.log(error);
@@ -74,7 +74,7 @@ async function getFavPlanets() {
 
 async function checkIfAlreadyFav(planets, i) {
     try {
-        const planetNameQuery = query(collection(db, 'favPlanets'), where('planetName', '==', planets[i].name));
+        const planetNameQuery = query(collection(db, 'favPlanets'), where('planetName', '==', planets.bodies[i].name));
         const result = await getDocs(planetNameQuery);
         let resultName = {};
 
